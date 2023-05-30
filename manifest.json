@@ -3,7 +3,7 @@
   "name": "GPT Summarizer",
   "version": "1.0",
   "permissions": ["activeTab"],
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html"
   },
   "content_scripts": [
