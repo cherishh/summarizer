@@ -1,7 +1,12 @@
 import archiver from 'archiver'
 import * as dotenv from 'dotenv'
+import autoprefixer from 'autoprefixer'
 import esbuild from 'esbuild'
+import postcssPlugin from 'esbuild-style-plugin'
+import postcssLess from 'postcss-less';
+import { lessLoader } from 'esbuild-plugin-less';
 import fs from 'fs-extra'
+import process from 'node:process'
 
 dotenv.config()
 
@@ -32,8 +37,15 @@ async function runEsbuild() {
     jsx: 'automatic',
     loader: {
       '.png': 'dataurl',
+      // '.less': 'css', // 配置.less文件的加载器为css
     },
-    plugins: [],
+    plugins: [
+      postcssPlugin({
+        postcss: {
+          plugins: [autoprefixer],
+        },
+      }),
+    ],
   })
 }
 
@@ -79,6 +91,7 @@ async function build() {
     `./${outdir}/chromium`,
   )
   await zipFolder(`./${outdir}/chromium`)
+  // eslint-disable-next-line no-console
   console.log('Build success.')
 }
 
