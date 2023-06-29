@@ -1,3 +1,17 @@
-import { Readability } from "@mozilla/readability";
+import Browser from 'webextension-polyfill'
 
-const article = new Readability(document).parse();
+
+let article: any = null;
+Browser.runtime.onMessage.addListener((message) => {
+  if (message.action === 'readability') {
+    article= message.article;
+  }
+});
+
+Browser.browserAction.onClicked.addListener(() => {
+  if (article) {
+    setTimeout(() => {
+      Browser.runtime.sendMessage({ action: 'getArticle', article });
+    }, 100);
+  }
+});

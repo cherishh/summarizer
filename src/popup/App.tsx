@@ -7,21 +7,25 @@ function App() {
 
   useEffect(() => {
     Browser.runtime.onMessage.addListener((message) => {
-      if (message.action === 'readability') {
-        console.log(message.article)
+      console.log(message, 'message');
+      window.test = message;
+      if (message.action === 'getArticle') {
         setArticle(message.article)
       }
     });
   }, []);
 
-  return (
-    <div className='test'>
-      {article}
-    </div>
-  )
+  // return (
+  //   <div className='test'>
+  //     {article}
+  //   </div>
+  // )
   return (
     <div className='test'>
       hello world
+      <div>
+        {article}
+      </div>
     </div>
   )
 }
