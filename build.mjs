@@ -3,8 +3,6 @@ import * as dotenv from 'dotenv'
 import autoprefixer from 'autoprefixer'
 import esbuild from 'esbuild'
 import postcssPlugin from 'esbuild-style-plugin'
-import postcssLess from 'postcss-less';
-import { lessLoader } from 'esbuild-plugin-less';
 import fs from 'fs-extra'
 import process from 'node:process'
 

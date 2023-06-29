@@ -1,1 +1,3 @@
-import Readability from "@mozilla/readability";
+import { Readability } from "@mozilla/readability";
+
+const article = new Readability(document).parse();
