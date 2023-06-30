@@ -3,7 +3,9 @@
   "env": {
     "browser": true
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -17,8 +19,17 @@
     "sourceType": "module"
   },
   "rules": {
-    "max-len":["error",{"code":120}],
-    "no-console":"error"
+    "max-len": [
+      "error",
+      {
+        "code": 120
+      }
+    ],
+    "no-console": "error",
+    "react/react-in-jsx-scope": "off"
   },
-  "ignorePatterns": ["dist/**", "lib/**"]
+  "ignorePatterns": [
+    "dist/**",
+    "lib/**"
+  ]
 }

@@ -6,6 +6,7 @@ function App() {
   const [article, setArticle] = React.useState(null)
 
   useEffect(() => {
+    window.test1 = 1;
     Browser.runtime.onMessage.addListener((message) => {
       console.log(message, 'message');
       window.test = message;
@@ -22,7 +23,7 @@ function App() {
   // )
   return (
     <div className='test'>
-      hello world
+      hello world！
       <div>
         {article}
       </div>

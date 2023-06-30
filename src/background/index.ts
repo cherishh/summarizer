@@ -1,17 +1,22 @@
-import Browser from 'webextension-polyfill'
-
+import Browser from 'webextension-polyfill';
 
 let article: any = null;
+console.log('background script loaded');
+
+Browser.runtime.onConnect.addListener((port) => {
+  console.log(port, 'port');
+  port.onMessage.addListener(async (msg) => {
+    console.debug('received msg', msg);
+  });
+});
+
 Browser.runtime.onMessage.addListener((message) => {
   if (message.action === 'readability') {
-    article= message.article;
+    console.debug('readability', message);
+    article = message.article;
   }
 });
 
-Browser.browserAction.onClicked.addListener(() => {
-  if (article) {
-    setTimeout(() => {
-      Browser.runtime.sendMessage({ action: 'getArticle', article });
-    }, 100);
-  }
-});
+// Browser.browserAction.onClicked.addListener(() => {
+//   Browser.runtime.sendMessage({ action: 'test', msg: 'ok' });
+// });

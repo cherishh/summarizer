@@ -75,6 +75,7 @@ async function build() {
     { src: 'build/content/index.js', dst: 'content.js' },
     { src: 'build/content/index.css', dst: 'content.css' },
     { src: 'build/background/index.js', dst: 'background.js' },
+    { src: 'src/background/index.html', dst: 'background.html' },
     { src: 'build/options/index.js', dst: 'options.js' },
     { src: 'build/options/index.css', dst: 'options.css' },
     { src: 'src/options/index.html', dst: 'options.html' },
