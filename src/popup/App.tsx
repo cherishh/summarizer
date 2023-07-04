@@ -5,16 +5,16 @@ import './style.scss'
 function App() {
   const [article, setArticle] = React.useState(null)
 
-  useEffect(() => {
-    window.test1 = 1;
-    Browser.runtime.onMessage.addListener((message) => {
-      console.log(message, 'message');
-      window.test = message;
-      if (message.action === 'getArticle') {
-        setArticle(message.article)
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.test1 = 1;
+  //   Browser.runtime.onMessage.addListener((message) => {
+  //     console.log(message, 'message');
+  //     window.test = message;
+  //     if (message.action === 'getArticle') {
+  //       setArticle(message.article)
+  //     }
+  //   });
+  // }, []);
 
   // return (
   //   <div className='test'>

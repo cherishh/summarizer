@@ -1,21 +1,19 @@
 import './style.scss'
-import { Readability } from "@mozilla/readability";
+// import { Readability } from "@mozilla/readability";
 import Browser from 'webextension-polyfill'
 
 
 console.log(123);
+console.log(document, 'document');
 
-document.addEventListener("DOMContentLoaded", function() {
-  async function init() {
-    const article = new Readability(document).parse();
-    Browser.runtime.sendMessage({ action: 'readability', article });
+Browser.runtime.onMessage.addListener((msg) => {
+  console.log(msg.msg, 'content get');
+})
 
-    Browser.runtime.onMessage.addListener((message) => {
-      if (message.action === 'test') {
-        console.log(message.msg, 'msg');
-      }
-    });
-  }
-  
-  init();
+// Browser.runtime.sendMessage({ action: 'doc', msg: 'content send to bg', document})
+
+
+window.addEventListener("load", function() {
+  console.log('window loaded');
+  Browser.runtime.sendMessage({ action: 'doc', msg: 'content send to bg', document})
 });
