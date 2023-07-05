@@ -1,14 +1,23 @@
 import Browser from 'webextension-polyfill';
 
 console.log('background script loaded');
+let article = null;
+Browser.runtime.onConnect.addListener((port) => {
+  port.onMessage.addListener(async (message) => {
+    console.log(message, 'bg get');
+    article = message;
 
-Browser.runtime.onMessage.addListener((message) => {
-    console.log( message, 'bg get');
+    Browser.runtime.sendMessage({
+      action: 'article',
+      article,
+    })
+  });
+
+  // setTimeout(() => {
+  //   port.postMessage({ action: 'click', msg: 'clicked icon' });
+  // }, 5000);
 });
+
 console.log(234);
 
-
-setTimeout(() => {
-  Browser.runtime.sendMessage({ action: 'click', msg: 'clicked icon' });
-}, 10000);
 
